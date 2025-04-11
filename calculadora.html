@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azumy Calculadora - Banco de Duto</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="img/icon-192.png">
+</head>
+<body>
+    <div class="container">
+        <header class="calc-header">
+            <button class="back-button" onclick="window.location.href='index.html'">← Voltar</button>
+            <h1 id="titulo-tela">Banco de Duto</h1>
+            <button class="historico-button" onclick="mostrarTela('historico')">Histórico</button>
+        </header>
+
+        <main id="conteudo-dinamico">
+            <!-- Tela do Banco de Duto -->
+            <div id="banco-duto" class="tela-calculadora">
+                <h2>Cálculo de Banco de Duto</h2>
+                
+                <div class="dimensoes-banco">
+                    <div class="input-group">
+                        <label for="largura-banco-duto">Largura (m)</label>
+                        <input type="number" id="largura-banco-duto" step="0.01" min="0.01" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="altura-banco-duto">Altura (m)</label>
+                        <input type="number" id="altura-banco-duto" step="0.01" min="0.01" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="comprimento-banco-duto">Comprimento (m)</label>
+                        <input type="number" id="comprimento-banco-duto" step="0.01" min="0.1" required>
+                    </div>
+                </div>
+                
+                <div class="secao-tubos">
+                    <h3>Tubos</h3>
+                    <div id="tubos-container">
+                        <!-- Tubos serão adicionados dinamicamente aqui -->
+                    </div>
+                    
+                    <button type="button" class="btn-adicionar" onclick="adicionarTubo()">
+                        <span class="icon">+</span> Adicionar Tubo
+                    </button>
+                </div>
+                
+                <div class="action-buttons">
+                    <button type="button" class="btn-calcular" onclick="calcularBancoDuto()">
+                        <span class="icon">=</span> Calcular
+                    </button>
+                    <button type="button" class="btn-salvar" onclick="salvarBancoDuto()">
+                        <span class="icon">💾</span> Salvar
+                    </button>
+                    <button type="button" class="btn-limpar" onclick="limparDadosBancoDuto()">
+                        <span class="icon">🗑️</span> Limpar
+                    </button>
+                </div>
+                
+                <div class="resultado" id="resultado-banco-duto" style="display: none;">
+                    <h3>Resumo Completo</h3>
+                    
+                    <div class="resumo-item">
+                        <span>Dimensões do Banco:</span>
+                        <span class="resumo-valor">
+                            Largura: <span id="resumo-largura">0,00</span> m × 
+                            Altura: <span id="resumo-altura">0,00</span> m × 
+                            Comprimento: <span id="resumo-comprimento">0,00</span> m
+                        </span>
+                    </div>
+                    
+                    <div id="resumo-tubos">
+                        <!-- Resumo dos tubos será adicionado aqui -->
+                    </div>
+                    
+                    <div class="resultado-grid">
+                        <div class="resultado-item">
+                            <span>Volume Bruto do Banco:</span>
+                            <span class="resultado-valor"><span id="volume-bruto">0,00</span> m³</span>
+                        </div>
+                        
+                        <div class="resultado-item">
+                            <span>Volume Total dos Tubos:</span>
+                            <span class="resultado-valor"><span id="volume-tubos">0,00</span> m³</span>
+                        </div>
+                        
+                        <div class="resultado-item destaque">
+                            <span>Volume de Concreto Necessário:</span>
+                            <span class="resultado-valor"><span id="volume-concreto">0,00</span> m³</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tela de Histórico -->
+            <div id="historico" class="tela-calculadora" style="display: none;">
+                <h2>Histórico de Cálculos</h2>
+                <div class="historico-acoes">
+                    <button type="button" onclick="carregarHistorico()">↻ Atualizar</button>
+                    <button type="button" onclick="limparHistorico()">🗑️ Limpar Tudo</button>
+                </div>
+                <div id="historico-listagem" class="historico-lista"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Função para mostrar a tela selecionada
+        function mostrarTela(id) {
+            // Oculta todas as telas
+            document.querySelectorAll('.tela-calculadora').forEach(tela => {
+                tela.style.display = 'none';
+            });
+            
+            // Mostra a tela solicitada
+            const telaAtual = document.getElementById(id);
+            if (telaAtual) {
+                telaAtual.style.display = 'block';
+                document.getElementById('titulo-tela').textContent = 
+                    id === 'historico' ? 'Histórico' : telaAtual.querySelector('h2').textContent;
+                
+                // Se for histórico, carrega os dados
+                if (id === 'historico') {
+                    carregarHistorico();
+                }
+            }
+        }
+        
+        // Carrega a tela correta ao abrir a página
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tela = urlParams.get('tela') || 'banco-duto';
+            mostrarTela(tela);
+            
+            // Adiciona o primeiro tubo automaticamente
+            if (tela === 'banco-duto') {
+                adicionarTubo();
+            }
+        });
+    </script>
+</body>
+</html>

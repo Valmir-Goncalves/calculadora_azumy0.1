@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Viga</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="calc-header">
+            <button class="back-button" onclick="window.location.href='index.html'">← Voltar</button>
+            <h1>Cálculo de Viga</h1>
+        </header>
+
+        <main>
+            <div class="input-group">
+                <label for="tipo-estrutura">Tipo de Estrutura</label>
+                <select id="tipo-estrutura" class="input-tubo">
+                    <option value="viga">Viga</option>
+                    <option value="pilar">Pilar</option>
+                    <option value="laje">Laje</option>
+                    
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="fck">Resistência do Concreto (fck MPa)</label>
+                <select id="fck" class="input-tubo">
+                    <option value="20">20 MPa</option>
+                    <option value="25" selected>25 MPa</option>
+                    <option value="30">30 MPa</option>
+                    <option value="35">35 MPa</option>
+                    <option value="40">40 MPa</option>
+                    <option value="45">45 MPa</option>
+                    <option value="50">50 MPa</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="altura-viga">Altura (m)</label>
+                <input type="number" id="altura-viga" step="0.01" min="0.01" class="input-tubo">
+            </div>
+
+            <div class="input-group">
+                <label for="largura-viga">Largura (m)</label>
+                <input type="number" id="largura-viga" step="0.01" min="0.01" class="input-tubo">
+            </div>
+
+            <div class="input-group">
+                <label for="comprimento-viga">Comprimento (m)</label>
+                <input type="number" id="comprimento-viga" step="0.01" min="0.1" class="input-tubo">
+            </div>
+
+            <div class="input-group">
+                <label for="quantidade-viga">Quantidade</label>
+                <input type="number" id="quantidade-viga" min="1" value="1" class="input-tubo">
+            </div>
+
+            <div class="input-group">
+                <label for="saco-cimento">Peso do saco de cimento (kg)</label>
+                <input type="number" id="saco-cimento" min="1" value="50" class="input-tubo">
+            </div>
+
+            <button class="btn-calcular" onclick="calcularConcreto()">Calcular</button>
+
+            <div id="resultado-concreto" class="resultado" style="display: none;">
+                <!-- Resultados serão inseridos aqui -->
+            </div>
+        </main>
+    </div>
+
+    <script src="js/viga.js"></script>
+</body>
+</html>

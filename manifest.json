@@ -1,0 +1,29 @@
+{
+    "name": "Azumy Calculadora",
+    "short_name": "AzumyCalc",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#2A5C82",
+    "theme_color": "#2A5C82",
+    "description": "Calculadora de construção civil offline",
+    "icons": [
+      {
+        "src": "img/icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "img/icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ],
+    "related_applications": [
+      {
+        "platform": "webapp",
+        "url": "https://seusite.com/manifest.json"
+      }
+    ]
+  }

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Azumy</title>
+    <meta name="description" content="Calculadora de construção civil offline">
+    <meta name="theme-color" content="#2A5C82">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/icon-192.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icon-192.png">
+</head>
+<body>
+    <div class="container">
+        <header class="calc-header">
+            <div class="header-content">
+                <h1>Calculadora Azumy</h1>
+                <p class="subtitle">Ferramentas para construção civil</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="button-grid">
+                <button class="calc-btn primary" onclick="abrirCalculadora('banco-duto')">
+                    <span class="icon">📊</span>
+                    <span class="btn-text">Banco de Duto</span>
+                </button>
+                
+                <!-- No grid de botões, atualize o botão da viga -->
+<button class="calc-btn" onclick="abrirCalculadora('viga')">
+    <span class="icon">🏗️</span>
+    <span class="btn-text">Cálculo de Viga</span>
+</button>
+                
+                <button class="calc-btn" onclick="abrirCalculadora('laje')" disabled>
+                    <span class="icon">🧱</span>
+                    <span class="btn-text">Laje (Em breve)</span>
+                </button>
+                
+                <!-- No grid de botões, substitua o botão da escada por: -->
+                <button class="calc-btn" onclick="abrirCalculadora('escada')">
+                    <span class="icon">🪜</span>
+                    <span class="btn-text">Cálculo de Escada</span>
+                </button>
+
+                <button class="calc-btn" onclick="abrirCalculadora('historico')">
+                    <span class="icon">📜</span>
+                    <span class="btn-text">Histórico</span>
+                </button>
+                
+                <button class="calc-btn" onclick="abrirCalculadora('ajuda')">
+                    <span class="icon">❓</span>
+                    <span class="btn-text">Ajuda</span>
+                </button>
+                
+                <button class="calc-btn" onclick="abrirCalculadora('sobre')">
+                    <span class="icon">ℹ️</span>
+                    <span class="btn-text">Sobre</span>
+                </button>   
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <div class="version-info">
+                <p class="version">Versão 0.1</p>
+                <p class="offline-status">Modo Offline</p>
+            </div>
+        </footer>
+    </div>
+
+     <!-- Adicione esta linha ANTES do script interno -->
+    <script src="js/app.js"></script>
+
+    
+</body>
+</html>
